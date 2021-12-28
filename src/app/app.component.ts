@@ -38,16 +38,16 @@ LibC.printf "Hello from WebAssembly!\\n"
 `;
 
   crystalWasm = (async () => {
-    return await WebAssembly.compileStreaming(fetch('/assets/crystal.wasm'));
+    return await WebAssembly.compileStreaming(fetch('assets/crystal.wasm'));
   })();
 
   wasmLdWasm = (async () => {
-    return await WebAssembly.compileStreaming(fetch('/assets/wasm-ld.wasm'));
+    return await WebAssembly.compileStreaming(fetch('assets/wasm-ld.wasm'));
   })();
 
   fsJson = (async () => {
-    const data = await (await fetch("/assets/fs.json")).json();
-    const blob = await (await fetch("/assets/fs.blob")).arrayBuffer();
+    const data = await (await fetch("assets/fs.json")).json();
+    const blob = await (await fetch("assets/fs.blob")).arrayBuffer();
     return Object.fromEntries(Object.entries(data).map(([key, value]) => [key, value ? new Uint8Array(blob, ...(value as [number, number])) : null]));
   })();
 

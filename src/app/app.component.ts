@@ -24,6 +24,9 @@ export class AppComponent {
 #
 # For more details see https://github.com/crystal-lang/crystal/issues/10870
 # Playground source code: https://github.com/lbguilherme/crystal-playground
+#
+# If you are using a Chromium-based browser, keep the DevTools open or else it runs
+# out of memory (browser bug). Firefox seems to handle it much better.
 
 require "lib_c"
 require "c/*"
@@ -130,6 +133,7 @@ LibC.printf "Hello from WebAssembly!\\n"
 
     try {
       this.terminal.writeln("$ " + args.join(" "));
+      await new Promise(resolve => requestAnimationFrame(resolve));
 
       const wasi = new WASI({
         env,

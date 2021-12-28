@@ -15,7 +15,7 @@ jobs:
       - name: Install and Build 🔧
         run: |
           npm ci
-          npm run build --base-href /crystal-playground/
+          npm run build -- --base-href /crystal-playground/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v3

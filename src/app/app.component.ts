@@ -22,7 +22,7 @@ export class AppComponent {
 #
 # Everything here runs inside your browser.
 #
-# For more details see https://github.com/crystal-lang/crystal/issues/11658
+# For more details see https://github.com/crystal-lang/crystal/issues/10870
 # Playground source code: https://github.com/lbguilherme/crystal-playground
 
 require "lib_c"

@@ -2,7 +2,7 @@
 
 This is a very early and experimental Web playground for the Crystal Language using WebAssembly.
 
-See https://github.com/crystal-lang/crystal/issues/11658 for more details about the port. This repository includes the playground source code and the prebuilt binaries for Crystal and for LLVM's linker (wasm-ld).
+See https://github.com/crystal-lang/crystal/issues/10870 for more details about the port. This repository includes the playground source code and the prebuilt binaries for Crystal and for LLVM's linker (wasm-ld).
 
 ## Previous work that made this possible
 

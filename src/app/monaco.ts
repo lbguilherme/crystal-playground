@@ -12,9 +12,9 @@ export const monacoConfig: NgxMonacoEditorConfig = {
 };
 
 export async function initEditor(editor: any) {
-  await loadWASM(await (await fetch('/assets/onigasm.wasm')).arrayBuffer());
+  await loadWASM(await (await fetch('assets/onigasm.wasm')).arrayBuffer());
 
-  const crystalGrammar = await (await fetch("/assets/crystal.json")).text();
+  const crystalGrammar = await (await fetch("assets/crystal.json")).text();
 
   const registry = new Registry({
     getGrammarDefinition: async (scopeName) => {

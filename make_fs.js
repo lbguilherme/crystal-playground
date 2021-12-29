@@ -13,30 +13,29 @@ function copy(src, dest) {
       copy(path.join(src, child), path.join(dest, child));
     }
   } else {
-    // if (path.extname(src) === ".cr") {
-    //   let contents = fs.readFileSync(src, "utf8");
-    //   contents = contents.replace(/\{% skip_file (if|unless) (.*?) %\}([^]*)/, (match, ifOrUnless, condition, code) => {
-    //     condition = condition.replace(/flag\?\(:(\w+)\)/g, (match, flag) => {
-    //       return flag === "wasm32" ? "true" : "false";
-    //     });
+    if (path.extname(src) === ".cr") {
+      let contents = fs.readFileSync(src, "utf8");
+      contents = contents.replace(/\{% skip_file (if|unless) (.*?) %\}([^]*)/, (match, ifOrUnless, condition, code) => {
+        condition = condition.replace(/flag\?\(:(\w+)\)/g, (match, flag) => {
+          return flag === "wasm32" ? "true" : "false";
+        });
 
-    //     const goal = ifOrUnless === "if" ? true : false
-    //     if (eval(condition) === goal) {
-    //       return "";
-    //     } else {
-    //       return code;
-    //     }
-    //   });
+        const goal = ifOrUnless === "if" ? true : false
+        if (eval(condition) === goal) {
+          return "";
+        } else {
+          return code;
+        }
+      });
 
-    //   if (contents.includes("{% skip_file")) {
-    //     contents = ""
-    //   }
+      if (contents.includes("{% skip_file")) {
+        contents = ""
+      }
 
-    //   wasmFs.fs.writeFileSync(dest, contents);
-    // } else {
-    //   wasmFs.fs.writeFileSync(dest, fs.readFileSync(src));
-    // }
-    wasmFs.fs.writeFileSync(dest, fs.readFileSync(src));
+      wasmFs.fs.writeFileSync(dest, contents);
+    } else {
+      wasmFs.fs.writeFileSync(dest, fs.readFileSync(src));
+    }
   }
 }
 

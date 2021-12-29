@@ -92,11 +92,10 @@ LibC.printf "Hello from WebAssembly!\\n"
     const wasmFs = new WasmFs();
     wasmFs.fromJSON(await this.fsJson);
     wasmFs.fs.writeFileSync("/code.cr", this.code);
-    wasmFs.fs.writeFileSync("/empty.cr", "");
     wasmFs.fs.writeFileSync("/dev/zero", "");
 
     await this.executeCommand(this.crystalWasm, wasmFs, [
-      "crystal", "build", "/code.cr", "--cross-compile", "--prelude", "/empty.cr", ...(this.optimizeFlag ? ["--release"] : [])
+      "crystal", "build", "/code.cr", "--cross-compile", "--prelude", "empty", ...(this.optimizeFlag ? ["--release"] : [])
     ], {
       CRYSTAL_PATH: "/crystal/src"
     });
